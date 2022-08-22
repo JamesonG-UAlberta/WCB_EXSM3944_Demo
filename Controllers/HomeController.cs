@@ -23,6 +23,11 @@ namespace MVC_Demo.Controllers
             return View();
         }
 
+        public IActionResult IterativeDemo()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

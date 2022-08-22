@@ -1,0 +1,25 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    string[] myLines =
+            {
+        "Hello, World!",
+        "How are your today?",
+        "This is really fun!",
+        "What time is it?"
+    };
+}
+
+<h1>Iterative Rendering</h1>
+@foreach (string line in myLines)
+{
+    @if (line[0] == 'H')
+    {
+        <b><p>@line</p></b>
+    }
+    else
+    {
+        <p>@line</p>
+    }
+}
