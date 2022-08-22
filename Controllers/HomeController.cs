@@ -18,6 +18,11 @@ namespace MVC_Demo.Controllers
             return View();
         }
 
+        public IActionResult Contact()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
