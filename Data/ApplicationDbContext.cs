@@ -65,7 +65,7 @@ namespace MVC_Demo.Data
                     {
                         new Product("Milk", 10, 2.50m) {ProductID = 1, CategoryID = 1},
                         new Product("Cereal", 50, 1.25m) {ProductID = 2, CategoryID = 6},
-                        new Product("Broccoli", 20, 1.50m) {ProductID = 2, CategoryID = 3}
+                        new Product("Broccoli", 20, 1.50m) {ProductID = 3, CategoryID = 3}
                     });
             });
 
