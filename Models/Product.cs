@@ -11,13 +11,6 @@ namespace MVC_Demo.Models
     [Table("product")]
     public class Product
     {
-        public Product(string name, int quantityOnHand, decimal salePrice)
-        {
-            Name = name;
-            QuantityOnHand = quantityOnHand;
-            SalePrice = salePrice;
-        }
-
 
         [Key] // PRIMARY KEY
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] // Identity is Microsoft's version of AUTO_INCREMENT, EF translates this during migration.
@@ -35,7 +28,7 @@ namespace MVC_Demo.Models
 
         [Column("qoh", TypeName = "int(10)")]
         [Required]
-        public int QuantityOnHand { get; private set; }
+        public int QuantityOnHand { get; set; }
 
         [Column("reorderthreshold", TypeName = "int(10)")]
         public int? ReorderTheshold { get; set; }
@@ -44,27 +37,7 @@ namespace MVC_Demo.Models
         [Required]
         public decimal SalePrice { get; set; }
 
-        [NotMapped]
-        public bool ReorderNecessary
-        {
-            get
-            {
-                return QuantityOnHand <= ReorderTheshold;
-            }
-        }
-
-        public int RecieveStock(int amount)
-        {
-            QuantityOnHand += amount;
-            return QuantityOnHand;
-        }
-
-        public int SellStock(int amount)
-        {
-            QuantityOnHand -= amount;
-            return QuantityOnHand;
-        }
-
+       
         [ForeignKey(nameof(CategoryID))]
         [InverseProperty(nameof(Models.ProductCategory.Products))]
         public virtual ProductCategory ProductCategory { get; set; }

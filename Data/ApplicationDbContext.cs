@@ -16,7 +16,7 @@ namespace MVC_Demo.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured) optionsBuilder.UseMySql("server=localhost;port=3306;user=root;database=ef_demo", new MySqlServerVersion(new Version(10, 4, 24)));
+            if (!optionsBuilder.IsConfigured) optionsBuilder.UseMySql("server=localhost;port=3306;user=root;database=mvc_demo_auth", new MySqlServerVersion(new Version(10, 4, 24)));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -63,9 +63,9 @@ namespace MVC_Demo.Data
                 entity.HasData(
                     new Product[]
                     {
-                        new Product("Milk", 10, 2.50m) {ProductID = 1, CategoryID = 1},
-                        new Product("Cereal", 50, 1.25m) {ProductID = 2, CategoryID = 6},
-                        new Product("Broccoli", 20, 1.50m) {ProductID = 3, CategoryID = 3}
+                        new Product() {ProductID = 1, CategoryID = 1, Name="Milk", QuantityOnHand = 10, SalePrice = 2.50m},
+                        new Product()  {ProductID = 2, CategoryID = 6, Name="Cereal", QuantityOnHand = 50, SalePrice = 1.25m},
+                        new Product()  {ProductID = 3, CategoryID = 3, Name="Broccoli", QuantityOnHand = 20, SalePrice = 1.50m}
                     });
             });
 
