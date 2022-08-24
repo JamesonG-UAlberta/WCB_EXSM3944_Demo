@@ -4,7 +4,7 @@ using MVC_Demo.Models;
 
 namespace MVC_Demo.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public partial class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
