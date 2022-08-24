@@ -1,0 +1,20 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    string[] staffNames =
+                    {
+        "John Doe",
+        "Jane Doe",
+        "Sally Smith",
+        "Bob Smith",
+        "Mr. Potato Head"
+    };
+}
+
+<h1>Staff Directory</h1>
+@for(int i = 0; i < staffNames.Length; i++)
+{
+    <h2>@staffNames[i]</h2>
+    <img src=@("https://fakeface.rest/thumb/view?minimum_age="+(18+i))>
+}
