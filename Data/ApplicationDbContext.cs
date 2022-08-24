@@ -4,6 +4,23 @@ using MVC_Demo.Models;
 
 namespace MVC_Demo.Data
 {
+    /*
+     DbContext:
+        -Copy (or write) the contents of the DbContext from a previous completed one (I used the ef-iii demo from EXSM3942).
+        -Set the class to partial.
+        -Change the database name in OnConfiguring (it's a fallback from appsettings.json so it shouldn't matter, but set it anyways).
+        -Add a call to the base version of OnModelCreating().
+        -(If you copied from the same one I did) Change the format for the Product seed data to a full initializer list on a default constructor (similar to the ProductCategory seed data).
+     Models:
+        -Copy (or write) the model files.
+        -(If you copied from the same one I did) remove all non-default constructors, NotMapped properties (these will return later), and logic methods (CRUD).
+        -Add a migration and update the database.
+     Project Config (csproj):
+        -Comment out the line at the beginning: <Nullable>enable</Nullable>
+     Controller/View Creation:
+        -Right click on Controllers, add your controllers.
+        -Add links to their Index action to the navigation.
+    */
     public partial class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
