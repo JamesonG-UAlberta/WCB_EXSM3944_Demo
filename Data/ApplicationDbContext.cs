@@ -21,6 +21,8 @@ namespace MVC_Demo.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<ProductCategory>(entity =>
             {
                 entity.Property(e => e.Name)
@@ -34,7 +36,12 @@ namespace MVC_Demo.Data
                 entity.HasData(
                     new ProductCategory[]
                     {
-                        new ProductCategory() {ProductCategoryID = 1, Name = "Cool Products", Description = "All of the coolest products."}
+                        new ProductCategory() {ProductCategoryID = 1, Name = "Dairy", Description = "Stuff that indirectly comes from cows."},
+                        new ProductCategory() {ProductCategoryID = 2, Name = "Deli", Description = "Stuff that comes from cows, pigs, chickens, etc."},
+                        new ProductCategory() {ProductCategoryID = 3, Name = "Garden", Description = "Fruits and vegitables."},
+                        new ProductCategory() {ProductCategoryID = 4, Name = "Beverages", Description = "Stuff that you drink."},
+                        new ProductCategory() {ProductCategoryID = 5, Name = "Frozen", Description = "Stuff that's stored below freezing."},
+                        new ProductCategory() {ProductCategoryID = 6, Name = "Cereal", Description = "Stuff that's either healthy or tastes good."}
                     });
             });
 
@@ -57,7 +64,8 @@ namespace MVC_Demo.Data
                     new Product[]
                     {
                         new Product("Milk", 10, 2.50m) {ProductID = 1, CategoryID = 1},
-                        new Product("Cereal", 50, 1.25m) {ProductID = 2, CategoryID = 1},
+                        new Product("Cereal", 50, 1.25m) {ProductID = 2, CategoryID = 6},
+                        new Product("Broccoli", 20, 1.50m) {ProductID = 2, CategoryID = 3}
                     });
             });
 
