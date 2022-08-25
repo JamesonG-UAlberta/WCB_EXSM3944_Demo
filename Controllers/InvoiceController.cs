@@ -48,7 +48,7 @@ namespace MVC_Demo.Controllers
         // GET: Invoice/Create
         public IActionResult Create()
         {
-            ViewData["Customerid"] = new SelectList(_context.Customers, "Id", "Id");
+            ViewData["Customerid"] = new SelectList(_context.Customers, "Id", "Fullname");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace MVC_Demo.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Customerid"] = new SelectList(_context.Customers, "Id", "Id", orderInvoice.Customerid);
+            ViewData["Customerid"] = new SelectList(_context.Customers, "Id", "Fullname", orderInvoice.Customerid);
             return View(orderInvoice);
         }
 
