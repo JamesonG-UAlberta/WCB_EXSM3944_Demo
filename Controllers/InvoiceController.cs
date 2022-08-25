@@ -82,7 +82,7 @@ namespace MVC_Demo.Controllers
             {
                 return NotFound();
             }
-            ViewData["Customerid"] = new SelectList(_context.Customers, "Id", "Id", orderInvoice.Customerid);
+            ViewData["Customerid"] = new SelectList(_context.Customers, "Id", "Fullname", orderInvoice.Customerid);
             return View(orderInvoice);
         }
 
@@ -118,7 +118,7 @@ namespace MVC_Demo.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Customerid"] = new SelectList(_context.Customers, "Id", "Id", orderInvoice.Customerid);
+            ViewData["Customerid"] = new SelectList(_context.Customers, "Id", "Fullname", orderInvoice.Customerid);
             return View(orderInvoice);
         }
 
