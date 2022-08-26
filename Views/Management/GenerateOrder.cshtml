@@ -1,0 +1,23 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h1>Create An Order With AppDev's Silly Grocery Store!</h1>
+<p>@(ViewData["TestData"] as string)</p>
+<p>@ViewBag.TestBag</p>
+
+<ul>
+    @foreach(Customer customer in ViewData["Customers"] as List<Customer>)
+    {
+        <li>@customer.Fullname</li>
+    }
+</ul>
+
+<ul>
+    @foreach(InventoryProduct product in ViewData["Products"] as List<InventoryProduct>)
+    {
+        <li>@product.Name</li>
+    }
+</ul>
