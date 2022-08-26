@@ -22,18 +22,18 @@ namespace MVC_Demo.Controllers
         // GET: Product
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Inventoryproducts.ToListAsync());
+              return View(await _context.Products.ToListAsync());
         }
 
         // GET: Product/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Inventoryproducts == null)
+            if (id == null || _context.Products == null)
             {
                 return NotFound();
             }
 
-            var inventoryProduct = await _context.Inventoryproducts
+            var inventoryProduct = await _context.Products
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (inventoryProduct == null)
             {
@@ -54,7 +54,7 @@ namespace MVC_Demo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Qoh")] InventoryProduct inventoryProduct)
+        public async Task<IActionResult> Create([Bind("Id,Name,Qoh")] Product inventoryProduct)
         {
             if (ModelState.IsValid)
             {
@@ -68,12 +68,12 @@ namespace MVC_Demo.Controllers
         // GET: Product/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Inventoryproducts == null)
+            if (id == null || _context.Products == null)
             {
                 return NotFound();
             }
 
-            var inventoryProduct = await _context.Inventoryproducts.FindAsync(id);
+            var inventoryProduct = await _context.Products.FindAsync(id);
             if (inventoryProduct == null)
             {
                 return NotFound();
@@ -86,7 +86,7 @@ namespace MVC_Demo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Qoh")] InventoryProduct inventoryProduct)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Qoh")] Product inventoryProduct)
         {
             if (id != inventoryProduct.Id)
             {
@@ -119,12 +119,12 @@ namespace MVC_Demo.Controllers
         // GET: Product/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Inventoryproducts == null)
+            if (id == null || _context.Products == null)
             {
                 return NotFound();
             }
 
-            var inventoryProduct = await _context.Inventoryproducts
+            var inventoryProduct = await _context.Products
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (inventoryProduct == null)
             {
@@ -139,14 +139,14 @@ namespace MVC_Demo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Inventoryproducts == null)
+            if (_context.Products == null)
             {
                 return Problem("Entity set 'ApplicationDbContext.Inventoryproducts'  is null.");
             }
-            var inventoryProduct = await _context.Inventoryproducts.FindAsync(id);
+            var inventoryProduct = await _context.Products.FindAsync(id);
             if (inventoryProduct != null)
             {
-                _context.Inventoryproducts.Remove(inventoryProduct);
+                _context.Products.Remove(inventoryProduct);
             }
             
             await _context.SaveChangesAsync();
@@ -155,7 +155,7 @@ namespace MVC_Demo.Controllers
 
         private bool InventoryProductExists(int id)
         {
-          return _context.Inventoryproducts.Any(e => e.Id == id);
+          return _context.Products.Any(e => e.Id == id);
         }
     }
 }

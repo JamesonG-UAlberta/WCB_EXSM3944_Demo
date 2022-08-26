@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MVC_Demo.Models.OrderInventory>
+﻿@model IEnumerable<MVC_Demo.Models.InvoiceProduct>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,7 +13,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Order)
+                @Html.DisplayNameFor(model => model.Invoice)
 
             </th>
             <th>
@@ -30,7 +30,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Order.OrderSummary)
+                    @Html.DisplayFor(modelItem => item.Invoice.OrderSummary)
 
                 </td>
                 <td>

@@ -1,4 +1,4 @@
-﻿@model MVC_Demo.Models.OrderInventory
+﻿@model MVC_Demo.Models.InvoiceProduct
 
 @{
     ViewData["Title"] = "Details";
@@ -23,10 +23,10 @@
             @Html.DisplayFor(model => model.Product.Name)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Order)
+            @Html.DisplayNameFor(model => model.Invoice)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Order.Id)
+            @Html.DisplayFor(model => model.Invoice.Id)
         </dd>
     </dl>
 </div>

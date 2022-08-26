@@ -16,7 +16,7 @@
 </ul>
 
 <ul>
-    @foreach(InventoryProduct product in ViewData["Products"] as List<InventoryProduct>)
+    @foreach(Product product in ViewData["Products"] as List<Product>)
     {
         <li>@product.Name</li>
     }

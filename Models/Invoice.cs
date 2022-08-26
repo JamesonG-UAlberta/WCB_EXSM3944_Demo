@@ -2,11 +2,11 @@
 
 namespace MVC_Demo.Models
 {
-    public class OrderInvoice
+    public class Invoice
     {
-        public OrderInvoice()
+        public Invoice()
         {
-            OrderInventories = new HashSet<OrderInventory>();
+            InvoiceProducts = new HashSet<InvoiceProduct>();
         }
 
         public int Id { get; set; }
@@ -16,6 +16,6 @@ namespace MVC_Demo.Models
         public string OrderSummary => Id + " - " + Customer.Fullname;
 
         public virtual Customer Customer { get; set; } = null!;
-        public virtual ICollection<OrderInventory> OrderInventories { get; set; }
+        public virtual ICollection<InvoiceProduct> InvoiceProducts { get; set; }
     }
 }

@@ -22,19 +22,19 @@ namespace MVC_Demo.Controllers
         // GET: Invoice
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Orderinvoices.Include(o => o.Customer);
+            var applicationDbContext = _context.Invoices.Include(o => o.Customer);
             return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Invoice/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Orderinvoices == null)
+            if (id == null || _context.Invoices == null)
             {
                 return NotFound();
             }
 
-            var orderInvoice = await _context.Orderinvoices
+            var orderInvoice = await _context.Invoices
                 .Include(o => o.Customer)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (orderInvoice == null)
@@ -57,7 +57,7 @@ namespace MVC_Demo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Customerid")] OrderInvoice orderInvoice)
+        public async Task<IActionResult> Create([Bind("Id,Customerid")] Invoice orderInvoice)
         {
             if (ModelState.IsValid)
             {
@@ -72,12 +72,12 @@ namespace MVC_Demo.Controllers
         // GET: Invoice/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Orderinvoices == null)
+            if (id == null || _context.Invoices == null)
             {
                 return NotFound();
             }
 
-            var orderInvoice = await _context.Orderinvoices.FindAsync(id);
+            var orderInvoice = await _context.Invoices.FindAsync(id);
             if (orderInvoice == null)
             {
                 return NotFound();
@@ -91,7 +91,7 @@ namespace MVC_Demo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Customerid")] OrderInvoice orderInvoice)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Customerid")] Invoice orderInvoice)
         {
             if (id != orderInvoice.Id)
             {
@@ -125,12 +125,12 @@ namespace MVC_Demo.Controllers
         // GET: Invoice/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Orderinvoices == null)
+            if (id == null || _context.Invoices == null)
             {
                 return NotFound();
             }
 
-            var orderInvoice = await _context.Orderinvoices
+            var orderInvoice = await _context.Invoices
                 .Include(o => o.Customer)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (orderInvoice == null)
@@ -146,14 +146,14 @@ namespace MVC_Demo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Orderinvoices == null)
+            if (_context.Invoices == null)
             {
                 return Problem("Entity set 'ApplicationDbContext.Orderinvoices'  is null.");
             }
-            var orderInvoice = await _context.Orderinvoices.FindAsync(id);
+            var orderInvoice = await _context.Invoices.FindAsync(id);
             if (orderInvoice != null)
             {
-                _context.Orderinvoices.Remove(orderInvoice);
+                _context.Invoices.Remove(orderInvoice);
             }
             
             await _context.SaveChangesAsync();
@@ -162,7 +162,7 @@ namespace MVC_Demo.Controllers
 
         private bool OrderInvoiceExists(int id)
         {
-          return _context.Orderinvoices.Any(e => e.Id == id);
+          return _context.Invoices.Any(e => e.Id == id);
         }
     }
 }

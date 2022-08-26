@@ -6,7 +6,7 @@ namespace MVC_Demo.Models
     {
         public Customer()
         {
-            OrderInvoices = new HashSet<OrderInvoice>();
+            Invoices = new HashSet<Invoice>();
         }
 
         public int Id { get; set; }
@@ -16,6 +16,6 @@ namespace MVC_Demo.Models
         [NotMapped]
         public string Fullname => Firstname + " " + Lastname;
 
-        public virtual ICollection<OrderInvoice> OrderInvoices { get; set; }
+        public virtual ICollection<Invoice> Invoices { get; set; }
     }
 }

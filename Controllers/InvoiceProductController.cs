@@ -22,20 +22,20 @@ namespace MVC_Demo.Controllers
         // GET: InvoiceProduct
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Orderinventories.Include(o => o.Order).ThenInclude(x => x.Customer).Include(o => o.Product);
+            var applicationDbContext = _context.InvoiceProducts.Include(o => o.Invoice).ThenInclude(x => x.Customer).Include(o => o.Product);
             return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: InvoiceProduct/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Orderinventories == null)
+            if (id == null || _context.InvoiceProducts == null)
             {
                 return NotFound();
             }
 
-            var orderInventory = await _context.Orderinventories
-                .Include(o => o.Order)
+            var orderInventory = await _context.InvoiceProducts
+                .Include(o => o.Invoice)
                 .Include(o => o.Product)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (orderInventory == null)
@@ -49,8 +49,8 @@ namespace MVC_Demo.Controllers
         // GET: InvoiceProduct/Create
         public IActionResult Create()
         {
-            ViewData["Orderid"] = new SelectList(_context.Orderinvoices, "Id", "Id");
-            ViewData["Inventoryid"] = new SelectList(_context.Inventoryproducts, "Id", "Name");
+            ViewData["Orderid"] = new SelectList(_context.Invoices, "Id", "Id");
+            ViewData["Inventoryid"] = new SelectList(_context.Products, "Id", "Name");
             return View();
         }
 
@@ -59,7 +59,7 @@ namespace MVC_Demo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Orderid,Inventoryid,Quantity")] OrderInventory orderInventory)
+        public async Task<IActionResult> Create([Bind("Id,Orderid,Inventoryid,Quantity")] InvoiceProduct orderInventory)
         {
             if (ModelState.IsValid)
             {
@@ -67,26 +67,26 @@ namespace MVC_Demo.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Orderid"] = new SelectList(_context.Orderinvoices, "Id", "Id", orderInventory.Orderid);
-            ViewData["Inventoryid"] = new SelectList(_context.Inventoryproducts, "Id", "Name", orderInventory.Inventoryid);
+            ViewData["Orderid"] = new SelectList(_context.Invoices, "Id", "Id", orderInventory.Orderid);
+            ViewData["Inventoryid"] = new SelectList(_context.Products, "Id", "Name", orderInventory.Inventoryid);
             return View(orderInventory);
         }
 
         // GET: InvoiceProduct/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Orderinventories == null)
+            if (id == null || _context.InvoiceProducts == null)
             {
                 return NotFound();
             }
 
-            var orderInventory = await _context.Orderinventories.FindAsync(id);
+            var orderInventory = await _context.InvoiceProducts.FindAsync(id);
             if (orderInventory == null)
             {
                 return NotFound();
             }
-            ViewData["Orderid"] = new SelectList(_context.Orderinvoices, "Id", "Id", orderInventory.Orderid);
-            ViewData["Inventoryid"] = new SelectList(_context.Inventoryproducts, "Id", "Name", orderInventory.Inventoryid);
+            ViewData["Orderid"] = new SelectList(_context.Invoices, "Id", "Id", orderInventory.Orderid);
+            ViewData["Inventoryid"] = new SelectList(_context.Products, "Id", "Name", orderInventory.Inventoryid);
             return View(orderInventory);
         }
 
@@ -95,7 +95,7 @@ namespace MVC_Demo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Orderid,Inventoryid,Quantity")] OrderInventory orderInventory)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Orderid,Inventoryid,Quantity")] InvoiceProduct orderInventory)
         {
             if (id != orderInventory.Id)
             {
@@ -122,21 +122,21 @@ namespace MVC_Demo.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Orderid"] = new SelectList(_context.Orderinvoices, "Id", "Id", orderInventory.Orderid);
-            ViewData["Inventoryid"] = new SelectList(_context.Inventoryproducts, "Id", "Name", orderInventory.Inventoryid);
+            ViewData["Orderid"] = new SelectList(_context.Invoices, "Id", "Id", orderInventory.Orderid);
+            ViewData["Inventoryid"] = new SelectList(_context.Products, "Id", "Name", orderInventory.Inventoryid);
             return View(orderInventory);
         }
 
         // GET: InvoiceProduct/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Orderinventories == null)
+            if (id == null || _context.InvoiceProducts == null)
             {
                 return NotFound();
             }
 
-            var orderInventory = await _context.Orderinventories
-                .Include(o => o.Order)
+            var orderInventory = await _context.InvoiceProducts
+                .Include(o => o.Invoice)
                 .Include(o => o.Product)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (orderInventory == null)
@@ -152,14 +152,14 @@ namespace MVC_Demo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Orderinventories == null)
+            if (_context.InvoiceProducts == null)
             {
                 return Problem("Entity set 'ApplicationDbContext.Orderinventories'  is null.");
             }
-            var orderInventory = await _context.Orderinventories.FindAsync(id);
+            var orderInventory = await _context.InvoiceProducts.FindAsync(id);
             if (orderInventory != null)
             {
-                _context.Orderinventories.Remove(orderInventory);
+                _context.InvoiceProducts.Remove(orderInventory);
             }
             
             await _context.SaveChangesAsync();
@@ -168,7 +168,7 @@ namespace MVC_Demo.Controllers
 
         private bool OrderInventoryExists(int id)
         {
-          return _context.Orderinventories.Any(e => e.Id == id);
+          return _context.InvoiceProducts.Any(e => e.Id == id);
         }
     }
 }

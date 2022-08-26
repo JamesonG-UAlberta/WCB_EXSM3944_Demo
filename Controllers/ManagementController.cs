@@ -16,7 +16,7 @@ namespace MVC_Demo.Controllers
         public ActionResult GenerateOrder()
         {
             ViewData["Customers"] = _context.Customers.ToList();
-            ViewData["Products"] = _context.Inventoryproducts.ToList();
+            ViewData["Products"] = _context.Products.ToList();
 
 
             ViewBag.TestBag = "Here's some data I put in the ViewBag!";

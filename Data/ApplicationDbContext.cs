@@ -12,9 +12,9 @@ namespace MVC_Demo.Data
         }
 
         public virtual DbSet<Customer> Customers { get; set; } = null!;
-        public virtual DbSet<InventoryProduct> Inventoryproducts { get; set; } = null!;
-        public virtual DbSet<OrderInventory> Orderinventories { get; set; } = null!;
-        public virtual DbSet<OrderInvoice> Orderinvoices { get; set; } = null!;
+        public virtual DbSet<Product> Products { get; set; } = null!;
+        public virtual DbSet<InvoiceProduct> InvoiceProducts { get; set; } = null!;
+        public virtual DbSet<Invoice> Invoices { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -49,7 +49,7 @@ namespace MVC_Demo.Data
                     .HasColumnName("lastname");
             });
 
-            modelBuilder.Entity<InventoryProduct>(entity =>
+            modelBuilder.Entity<Product>(entity =>
             {
                 entity.ToTable("inventoryproduct");
 
@@ -66,7 +66,7 @@ namespace MVC_Demo.Data
                     .HasColumnName("qoh");
             });
 
-            modelBuilder.Entity<OrderInventory>(entity =>
+            modelBuilder.Entity<InvoiceProduct>(entity =>
             {
                 entity.ToTable("orderinventory");
 
@@ -91,19 +91,19 @@ namespace MVC_Demo.Data
                     .HasColumnName("quantity");
 
                 entity.HasOne(d => d.Product)
-                    .WithMany(p => p.OrderInventories)
+                    .WithMany(p => p.InvoiceProducts)
                     .HasForeignKey(d => d.Inventoryid)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_OrderInventory_InventoryProduct");
 
-                entity.HasOne(d => d.Order)
-                    .WithMany(p => p.OrderInventories)
+                entity.HasOne(d => d.Invoice)
+                    .WithMany(p => p.InvoiceProducts)
                     .HasForeignKey(d => d.Orderid)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_OrderInventory_OrderInvoice");
             });
 
-            modelBuilder.Entity<OrderInvoice>(entity =>
+            modelBuilder.Entity<Invoice>(entity =>
             {
                 entity.ToTable("orderinvoice");
 
@@ -118,7 +118,7 @@ namespace MVC_Demo.Data
                     .HasColumnName("customerid");
 
                 entity.HasOne(d => d.Customer)
-                    .WithMany(p => p.OrderInvoices)
+                    .WithMany(p => p.Invoices)
                     .HasForeignKey(d => d.Customerid)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_OrderInvoice_Customer");
