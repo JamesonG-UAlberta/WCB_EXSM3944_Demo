@@ -50,7 +50,7 @@ namespace MVC_Demo.Controllers
         public IActionResult Create()
         {
             ViewData["Orderid"] = new SelectList(_context.Orderinvoices, "Id", "Id");
-            ViewData["Inventoryid"] = new SelectList(_context.Inventoryproducts, "Id", "Id");
+            ViewData["Inventoryid"] = new SelectList(_context.Inventoryproducts, "Id", "Name");
             return View();
         }
 
@@ -68,7 +68,7 @@ namespace MVC_Demo.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["Orderid"] = new SelectList(_context.Orderinvoices, "Id", "Id", orderInventory.Orderid);
-            ViewData["Inventoryid"] = new SelectList(_context.Inventoryproducts, "Id", "Id", orderInventory.Inventoryid);
+            ViewData["Inventoryid"] = new SelectList(_context.Inventoryproducts, "Id", "Name", orderInventory.Inventoryid);
             return View(orderInventory);
         }
 
@@ -86,7 +86,7 @@ namespace MVC_Demo.Controllers
                 return NotFound();
             }
             ViewData["Orderid"] = new SelectList(_context.Orderinvoices, "Id", "Id", orderInventory.Orderid);
-            ViewData["Inventoryid"] = new SelectList(_context.Inventoryproducts, "Id", "Id", orderInventory.Inventoryid);
+            ViewData["Inventoryid"] = new SelectList(_context.Inventoryproducts, "Id", "Name", orderInventory.Inventoryid);
             return View(orderInventory);
         }
 
@@ -123,7 +123,7 @@ namespace MVC_Demo.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["Orderid"] = new SelectList(_context.Orderinvoices, "Id", "Id", orderInventory.Orderid);
-            ViewData["Inventoryid"] = new SelectList(_context.Inventoryproducts, "Id", "Id", orderInventory.Inventoryid);
+            ViewData["Inventoryid"] = new SelectList(_context.Inventoryproducts, "Id", "Name", orderInventory.Inventoryid);
             return View(orderInventory);
         }
 
