@@ -22,7 +22,7 @@ namespace MVC_Demo.Controllers
         // GET: InvoiceProduct
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Orderinventories.Include(o => o.Order).Include(o => o.Product);
+            var applicationDbContext = _context.Orderinventories.Include(o => o.Order).ThenInclude(x => x.Customer).Include(o => o.Product);
             return View(await applicationDbContext.ToListAsync());
         }
 
