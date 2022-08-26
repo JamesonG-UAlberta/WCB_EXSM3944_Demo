@@ -9,15 +9,17 @@
 <p>@ViewBag.TestBag</p>
 
 
-<form asp-action="Create">
+<form asp-action="DoTheGeneration">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="form-group">
         <label class="control-label">Customer</label>
-        <select class ="form-control" asp-items="@(ViewData["Customers"] as SelectList)"></select>
+        <select name="customerId" class ="form-control" asp-items="@(ViewData["Customers"] as SelectList)"></select>
     </div>
     <div class="form-group">
         <label class="control-label">Product</label>
-        <select class ="form-control" asp-items="ViewBag.Products"></select>
+        <select name="productId" class="form-control" asp-items="ViewBag.Products"></select>
+        <label class="control-label">Quantity</label>
+        <input name="qty" type="text" class="form-control"/>
     </div>
     <div class="form-group">
         <input type="submit" value="Create" class="btn btn-primary" />
