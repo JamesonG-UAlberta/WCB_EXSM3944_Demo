@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MVC_Demo.Data;
 
 namespace MVC_Demo.Controllers
@@ -15,8 +16,8 @@ namespace MVC_Demo.Controllers
 
         public ActionResult GenerateOrder()
         {
-            ViewData["Customers"] = _context.Customers.ToList();
-            ViewData["Products"] = _context.Products.ToList();
+            ViewData["Customers"] = new SelectList(_context.Customers, "Id", "Fullname");
+            ViewData["Products"] = new SelectList(_context.Products, "Id", "Name");
 
 
             ViewBag.TestBag = "Here's some data I put in the ViewBag!";
