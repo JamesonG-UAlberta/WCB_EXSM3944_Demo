@@ -13,11 +13,13 @@
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="form-group">
         <label class="control-label">Customer</label>
-        <select name="customerId" class ="form-control" asp-items="@(ViewData["Customers"] as SelectList)"></select>
+        <!-- <select name="customerId" class="form-control" asp-items="@(ViewData["Customers"] as SelectList)"></select>-->
+        <input type="text" class="form-control" name="customerId" />
     </div>
     <div class="form-group">
         <label class="control-label">Product</label>
-        <select name="productId" class="form-control" asp-items="ViewBag.Products"></select>
+        <!-- <select name="productId" class="form-control" asp-items="ViewBag.Products"></select>-->
+        <input type="text" class="form-control" name="productId" />
         <label class="control-label">Quantity</label>
         <input name="qty" type="text" class="form-control"/>
     </div>
